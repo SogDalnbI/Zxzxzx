@@ -98,10 +98,8 @@ local function addButton(name, text, onActive, onDeactivate)
 
     btn.MouseButton1Click:Connect(function()
         local buttonData = buttons[#buttons]
-        if buttonData then
-            if buttonData.onActive then
-                buttonData.onActive()
-            end
+        if buttonData and buttonData.onActive then
+            buttonData.onActive()
         end
     end)
 end
@@ -109,24 +107,22 @@ end
 -- Загрузка и обработка внешнего скрипта
 local function loadExternalScript(url)
     local scriptContent = game:HttpGet(url)
-    local externalScript = loadstring(scriptContent)
+    print("Script content loaded")
+    local externalScript, loadError = loadstring(scriptContent)
     if externalScript then
-        local success, result = pcall(externalScript)
+        local success, execError = pcall(externalScript)
         if success then
             print("Script loaded and executed successfully")
         else
-            warn("Failed to execute script: " .. result)
+            warn("Failed to execute script: " .. execError)
         end
     else
-        warn("Failed to load script content.")
+        warn("Failed to load script content: " .. (loadError or "Unknown error"))
     end
 end
 
 -- Основной запуск
 createMenu()
 
--- Пример загрузки скрипта и добавления кнопок
-loadExternalScript("ссылка на этот скрипт сверху")
-
--- Пример добавления кнопок вручную (если нужно)
-addButton("text", "Button 1", function() print("yuy") end, function() print("hjhh") end)
+-- Загрузка внешнего скрипта
+loadExternalScript("https://raw.githubusercontent.com/SogDalnbI/Zxzxzx/main/Xcxc.lua")
