@@ -123,6 +123,3 @@ end
 
 -- Основной запуск
 createMenu()
-
--- Загрузка внешнего скрипта
-loadExternalScript("https://raw.githubusercontent.com/SogDalnbI/Zxzxzx/main/Xcxc.lua")
